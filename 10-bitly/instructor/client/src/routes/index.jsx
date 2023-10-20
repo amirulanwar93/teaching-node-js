@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
@@ -13,7 +7,6 @@ import Login from "../pages/Login";
 import Settings from "../pages/Settings";
 import Users from "../pages/Users";
 import Cookies from "universal-cookie";
-import axios from "axios";
 
 const AppRoutes = () => {
   return (
@@ -36,14 +29,14 @@ const ProtectedRoutes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
+    if (!token) {
       navigate("/login");
     }
   }, []);
 
   return (
     <Routes>
-      <Route path="/" element={<Dashboard userId={userId} />} />
+      <Route path="/" element={<Dashboard userId={1} />} />
       <Route path="/users" element={<Users />} />
       <Route path="/settings" element={<Settings />} />
     </Routes>
